@@ -7,8 +7,10 @@ Generador de Game Design Documents (GDD) en formato markdown, pensado para equip
 | Ruta | Descripción |
 |------|-------------|
 | `gdd-generator/template.md` | Plantilla maestra del GDD con marcadores `{{...}}` y las 13 secciones estándar. |
-| `gdd-generator/generate.py` | Script CLI que rellena la plantilla (modo interactivo o por argumentos). |
+| `gdd-generator/balance-template.md` | Plantilla de informe de ajuste de balance basado en datos de playtesting. |
+| `gdd-generator/generate.py` | Script CLI que rellena cualquier plantilla (modo interactivo o por argumentos). |
 | `examples/GDD_Cronomarea.md` | GDD de ejemplo completamente rellenado (roguelite de acción en pixel art). |
+| `examples/Balance_Cronomarea_Sedimento.md` | Informe de balance de ejemplo sobre la economía de Cronomarea. |
 
 ## Uso rápido
 
@@ -34,6 +36,21 @@ python3 gdd-generator/generate.py \
   --inspiraciones "Hades, Dead Cells, Outer Wilds" \
   --salida GDD_Cronomarea.md
 ```
+
+### Otras plantillas
+
+Con `--template` el script rellena cualquier plantilla; los marcadores `{{...}}` se descubren automáticamente y se rellenan con `--set` o de forma interactiva:
+
+```bash
+python3 gdd-generator/generate.py \
+  --template gdd-generator/balance-template.md \
+  --set SISTEMA="Economía de Sedimento" \
+  --set JUEGO="Cronomarea" \
+  --set ITERACION="1" \
+  --autor "Equipo de diseño"
+```
+
+La plantilla de balance produce un informe con: análisis de la raíz del problema, tabla de valores actuales vs. propuestos (con tope de ±20 % por parámetro), fórmula ajustada con proyección de curva, impacto en sistemas dependientes y plan de validación.
 
 ## Estructura del GDD generado
 
